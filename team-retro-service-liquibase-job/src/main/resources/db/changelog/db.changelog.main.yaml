@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: release-1/changelog-release-1-cumulative.yaml
+      context: main
+      relativeToChangelogFile: true

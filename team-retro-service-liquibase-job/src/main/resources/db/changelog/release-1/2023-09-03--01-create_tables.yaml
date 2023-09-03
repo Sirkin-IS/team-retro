@@ -1,0 +1,120 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: create_table_retro
+      author: SirkinIS
+      changes:
+        - createTable:
+            tableName: retro
+            columns:
+              - column:
+                  name: retro_id
+                  type: uuid
+                  remarks: Идентификатор ретро
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: caption
+                  type: varchar(50)
+                  remarks: Заголовок
+              - column:
+                  name: description
+                  type: varchar(100)
+                  remarks: Описание
+              - column:
+                  name: create_dttm
+                  type: TIMESTAMP WITHOUT TIME ZONE
+                  remarks: Время создания ретро
+              - column:
+                  name: update_dttm
+                  type: TIMESTAMP WITHOUT TIME ZONE
+                  remarks: Время обновления ретро
+      rollback:
+        - dropTable:
+            tableName: retro
+
+  - changeSet:
+      id: create_table_note
+      author: SirkinIS
+      changes:
+        - createTable:
+            tableName: note
+            columns:
+              - column:
+                  name: note_id
+                  type: uuid
+                  remarks: Идентификатор заметки
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: retro_id
+                  type: uuid
+                  remarks: Идентификатор ретро
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: uuid
+                  remarks: Идентификатор автора заметки
+                  constraints:
+                    nullable: false
+              - column:
+                  name: stage_type
+                  type: varchar(20)
+                  remarks: Этап ретро
+                  constraints:
+                    nullable: false
+              - column:
+                  name: caption
+                  type: varchar(50)
+                  remarks: Заголовок
+              - column:
+                  name: text
+                  type: varchar(4096)
+                  remarks: Текст заметки
+                  constraints:
+                    nullable: false
+      rollback:
+          - dropTable:
+              tableName: note
+
+  - changeSet:
+      id: create_table_retro_user
+      author: SirkinIS
+      changes:
+        - createTable:
+            tableName: retro_user
+            columns:
+              - column:
+                  name: user_id
+                  type: uuid
+                  remarks: Идентификатор пользователя
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: login
+                  type: varchar(100)
+                  remarks: Логин пользователя
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: password_hash
+                  type: varchar(100)
+                  remarks: Хэш пароля пользователя
+                  constraints:
+                    nullable: false
+              - column:
+                  name: pepper
+                  type: varchar(100)
+                  remarks: Динамическая соль
+              - column:
+                  name: name
+                  type: varchar(100)
+                  remarks: ФИО
+      rollback:
+          - dropTable:
+              tableName: retro_user

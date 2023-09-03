@@ -1,0 +1,30 @@
+server.port: 6969
+
+# -----------------------------------------------------------------------------#
+# Настройки БД
+# -----------------------------------------------------------------------------#
+spring:
+  datasource:
+    # Option reWriteBatchedInserts: This will change batch inserts from insert into foo (col1, col2, col3) values (1,2,3) into insert into foo (col1, col2, col3) values (1,2,3), (4,5,6) this provides 2-3x performance improvement
+    url: jdbc:postgresql://${DB_HOST:localhost:5469}/${DB_NAME:team_retro_db}?reWriteBatchedInserts=true
+    hikari:
+      driver-class-name: org.postgresql.Driver
+      jdbc-url: ${spring.datasource.url}
+      username: ${DB_USER:team_retro_db_user}
+      password: ${DB_PASSWORD:team_retro_db_user_password}
+      schema: public
+  jpa:
+    generate-ddl: false
+    properties:
+      hibernate:
+        ddl-auto: none
+        order_inserts: true
+        jdbc.time_zone: Europe/Moscow
+        jdbc.batch_size: 5000
+        jdbc.lob.non_contextual_creation: true #https://github.com/spring-projects/spring-boot/issues/12007
+        format_sql: false
+    open-in-view: false # https://vladmihalcea.com/the-open-session-in-view-anti-pattern/
+    show-sql: false
+
+app:
+  salt: "5e9ed1c3-bf2c-4578-a214-813e9b0b3a02"

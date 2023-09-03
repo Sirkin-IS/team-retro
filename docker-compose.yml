@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+
+  db-team-retro:
+    image: postgres:11
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: team_retro_db
+      POSTGRES_USER: team_retro_db_admin
+      POSTGRES_PASSWORD: team_retro_db_admin_password
+    volumes:
+      - ./docker/db/team-retro-service/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "5469:5432"
