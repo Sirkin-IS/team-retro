@@ -2,6 +2,7 @@ package ru.microsrv.teamretroservice.controller
 
 import jakarta.validation.Valid
 import java.util.UUID
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -57,6 +58,14 @@ class RetroController(
     @PutMapping("{retroId}")
     fun updateRetro(@PathVariable retroId: UUID, @Valid @RequestBody request: UpdateRetroRequest): BaseResponse {
         return retroService.updateRetro(retroId, request)
+    }
+
+    /**
+     * Удаление ретро.
+     */
+    @DeleteMapping("{retroId}")
+    fun selectRetro(@PathVariable retroId: UUID): BaseResponse {
+        return retroService.deleteRetro(retroId)
     }
 
 }

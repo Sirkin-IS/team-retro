@@ -4,8 +4,6 @@ import java.time.ZonedDateTime
 import java.util.*
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PutMapping
 import ru.microsrv.teamretroservice.mapper.RetroMapper
 import ru.microsrv.teamretroservice.model.common.PageableResponse
 import ru.microsrv.teamretroservice.model.entity.RetroEntity
@@ -15,6 +13,7 @@ import ru.microsrv.teamretroservice.model.web.request.retro.UpdateRetroRequest
 import ru.microsrv.teamretroservice.model.web.response.retro.BaseResponse
 import ru.microsrv.teamretroservice.model.web.response.retro.GetRetroListResponse
 import ru.microsrv.teamretroservice.model.web.response.retro.GetRetroResponse
+import ru.microsrv.teamretroservice.repository.NoteRepository
 import ru.microsrv.teamretroservice.repository.RetroRepository
 
 /**
@@ -23,6 +22,7 @@ import ru.microsrv.teamretroservice.repository.RetroRepository
 @Service
 class RetroService(
     val retroRepository: RetroRepository,
+    val noteRepository: NoteRepository,
     val retroMapper: RetroMapper
 ) {
 
@@ -46,11 +46,7 @@ class RetroService(
         return GetRetroResponse(retro)
     }
 
-    /**
-     * Обновление параметров ретро.
-     */
-    @PutMapping("{retroId}")
-    fun updateRetro(@PathVariable retroId: UUID, request: UpdateRetroRequest): BaseResponse {
+    fun updateRetro(retroId: UUID, request: UpdateRetroRequest): BaseResponse {
         val retroEntity: RetroEntity = retroRepository.findById(retroId).orElse(null)
             ?: return BaseResponse(null)
 
@@ -63,6 +59,12 @@ class RetroService(
         }
 
         return BaseResponse(null)
+    }
+
+    fun deleteRetro(retroId: UUID): BaseResponse {
+        retroRepository.deleteById(retroId)
+        noteRepository.deleteById(retroId)
+        return BaseResponse(retroId)
     }
 
 }

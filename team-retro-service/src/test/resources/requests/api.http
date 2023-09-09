@@ -31,3 +31,8 @@ Content-Type: application/json
   "caption": "new caption",
   "description": "new description"
 }
+
+<> end-request-body
+
+### Удаление ретро
+DELETE {{base_url}}/api/v1/retro/1755b7ab-690e-498b-9e68-4946bdb26cf1
