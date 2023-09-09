@@ -6,8 +6,8 @@ import java.util.*
 /**
  * Базовый ответ на запрос.
  *
- * @param id идентификатор созданного объекта
+ * @param id идентификатор созданного/обновлённого объекта
  */
-data class BaseRetroResponse(
-    val id: UUID
+data class BaseResponse(
+    val id: UUID?
 )

@@ -21,3 +21,13 @@ Content-Type: application/json
 GET {{base_url}}/api/v1/retro/94d52e48-fe72-4bd8-86bd-83a71a9db96d
 Authorization: {{auth_token}}
 Content-Type: application/json
+
+### Обновление параметров ретро
+PUT {{base_url}}/api/v1/retro/bf661e0c-cba9-4a26-9cfc-a2874db0e402
+Authorization: {{auth_token}}
+Content-Type: application/json
+
+{
+  "caption": "new caption",
+  "description": "new description"
+}
