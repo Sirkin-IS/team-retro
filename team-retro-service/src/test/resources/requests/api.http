@@ -1,0 +1,18 @@
+### Создание нового ретро
+POST {{base_url}}/api/v1/retro
+Authorization: {{auth_token}}
+Content-Type: application/json
+
+{
+  "caption": "This is retro caption",
+  "description": "This is retro description"
+}
+
+<> end-request-body
+
+### Получение списка ретро
+GET {{base_url}}/api/v1/retro/list?
+    pageNumber=0&
+    pageSize=2
+Authorization: {{auth_token}}
+Content-Type: application/json
