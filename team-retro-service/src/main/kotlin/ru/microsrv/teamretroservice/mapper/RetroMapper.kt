@@ -24,7 +24,7 @@ abstract class RetroMapper {
      )
      abstract fun toRetroEntity(request: CreateRetroRequest): RetroEntity
 
-     abstract fun toRetroDto(request: RetroEntity): RetroDto
+     abstract fun toRetroDto(request: RetroEntity?): RetroDto
 
      abstract fun toRetroDto(request: Iterable<RetroEntity>): List<RetroDto>
 }
