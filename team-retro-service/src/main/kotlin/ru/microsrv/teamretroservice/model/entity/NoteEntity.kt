@@ -38,14 +38,14 @@ class NoteEntity {
      * Идентификатор пользователя.
      */
     @Column(name = "user_id", nullable = false)
-    var userId: UUID? = null
+    lateinit var userId: UUID
 
     /**
      * Этап ретро.
      */
     @Enumerated(EnumType.STRING)
     @Column(name = "stage_type", nullable = false)
-    var stageType: StageType? = null
+    lateinit var stageType: StageType
 
     /**
      * Заголовок.
@@ -59,5 +59,5 @@ class NoteEntity {
      */
     @Column(name = "text")
     @Size(max = 4096)
-    var text: String? = null
+    lateinit var text: String
 }

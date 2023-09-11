@@ -4,9 +4,12 @@ import java.time.ZonedDateTime
 import java.util.*
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
+import ru.microsrv.teamretroservice.mapper.NoteMapper
 import ru.microsrv.teamretroservice.mapper.RetroMapper
 import ru.microsrv.teamretroservice.model.common.PageableResponse
 import ru.microsrv.teamretroservice.model.entity.RetroEntity
+import ru.microsrv.teamretroservice.model.web.request.note.CreateNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.CreateRetroRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.GetRetroListRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.UpdateRetroRequest
@@ -23,7 +26,8 @@ import ru.microsrv.teamretroservice.repository.RetroRepository
 class RetroService(
     val retroRepository: RetroRepository,
     val noteRepository: NoteRepository,
-    val retroMapper: RetroMapper
+    val retroMapper: RetroMapper,
+    val noteMapper: NoteMapper
 ) {
 
     fun createRetro(request: CreateRetroRequest): BaseResponse {
@@ -54,17 +58,27 @@ class RetroService(
             retroEntity.caption = request.caption
             retroEntity.description = request.description
             retroEntity.updateDttm = ZonedDateTime.now()
-            retroRepository.save(retroEntity)
-            return BaseResponse(retroEntity.retroId)
+            val result = retroRepository.save(retroEntity)
+            return BaseResponse(result.retroId)
         }
 
         return BaseResponse(null)
     }
 
+    @Transactional
     fun deleteRetro(retroId: UUID): BaseResponse {
         retroRepository.deleteById(retroId)
-        noteRepository.deleteById(retroId)
+        noteRepository.deleteByRetroId(retroId)
         return BaseResponse(retroId)
+    }
+
+    fun createNote(retroId: UUID, request: CreateNoteRequest): BaseResponse {
+        retroRepository.findById(retroId).orElse(null)
+            ?: return BaseResponse(null)
+
+        val note = noteMapper.toNoteEntity(retroId, request)
+        val res = noteRepository.save(note)
+        return BaseResponse(res.noteId)
     }
 
 }

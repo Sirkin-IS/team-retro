@@ -35,4 +35,16 @@ Content-Type: application/json
 <> end-request-body
 
 ### Удаление ретро
-DELETE {{base_url}}/api/v1/retro/1755b7ab-690e-498b-9e68-4946bdb26cf1
+DELETE {{base_url}}/api/v1/retro/bf661e0c-cba9-4a26-9cfc-a2874db0e402
+
+### Создание новой заметки
+POST {{base_url}}/api/v1/retro/03608c62-6831-4d71-8be3-ccff1e0cc34d/note/create
+Authorization: {{auth_token}}
+Content-Type: application/json
+
+{
+  "userId": "00000000-0000-0000-0000-000000000001",
+  "stageType": "WENT_WELL",
+  "caption": "caption",
+  "text": "текст заметки"
+}
