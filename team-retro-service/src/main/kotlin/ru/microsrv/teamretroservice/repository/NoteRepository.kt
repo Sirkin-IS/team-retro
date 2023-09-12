@@ -12,4 +12,6 @@ import ru.microsrv.teamretroservice.model.entity.NoteEntity
 interface NoteRepository : JpaRepository<NoteEntity, UUID> {
 
     fun deleteByRetroId(id: UUID): Long
+
+    fun deleteByNoteIdIn(noteId: Collection<UUID>): Long
 }

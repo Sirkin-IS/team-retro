@@ -10,11 +10,13 @@ import ru.microsrv.teamretroservice.mapper.RetroMapper
 import ru.microsrv.teamretroservice.model.common.PageableResponse
 import ru.microsrv.teamretroservice.model.entity.RetroEntity
 import ru.microsrv.teamretroservice.model.web.request.note.CreateNoteRequest
+import ru.microsrv.teamretroservice.model.web.request.note.DeleteNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.note.UpdateNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.CreateRetroRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.GetRetroListRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.UpdateRetroRequest
-import ru.microsrv.teamretroservice.model.web.response.retro.BaseResponse
+import ru.microsrv.teamretroservice.model.web.response.base.BaseResponse
+import ru.microsrv.teamretroservice.model.web.response.base.TotalResponse
 import ru.microsrv.teamretroservice.model.web.response.retro.GetRetroListResponse
 import ru.microsrv.teamretroservice.model.web.response.retro.GetRetroResponse
 import ru.microsrv.teamretroservice.repository.NoteRepository
@@ -67,10 +69,10 @@ class RetroService(
     }
 
     @Transactional
-    fun deleteRetro(retroId: UUID): BaseResponse {
-        retroRepository.deleteById(retroId)
+    fun deleteRetro(retroId: UUID): TotalResponse {
+        val result = retroRepository.deleteByRetroId(retroId)
         noteRepository.deleteByRetroId(retroId)
-        return BaseResponse(retroId)
+        return TotalResponse(result)
     }
 
     fun createNote(retroId: UUID, request: CreateNoteRequest): BaseResponse {
@@ -87,15 +89,19 @@ class RetroService(
 
         if (noteEntity.caption != request.caption || (request.text != null && noteEntity.text != request.text)) {
             noteEntity.caption = request.caption
-            if (request.text != null) {
-                noteEntity.text = request.text
-            }
+            noteEntity.text = request.text ?: noteEntity.text
 
             val result = noteRepository.save(noteEntity)
             return BaseResponse(result.noteId)
         }
 
         return BaseResponse(null)
+    }
+
+    @Transactional
+    fun deleteNotes(request: DeleteNoteRequest): TotalResponse {
+        val result = noteRepository.deleteByNoteIdIn(request.ids)
+        return TotalResponse(result)
     }
 
 }

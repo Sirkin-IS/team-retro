@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import ru.microsrv.teamretroservice.model.web.request.note.CreateNoteRequest
+import ru.microsrv.teamretroservice.model.web.request.note.DeleteNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.note.UpdateNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.CreateRetroRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.GetRetroListRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.UpdateRetroRequest
-import ru.microsrv.teamretroservice.model.web.response.retro.BaseResponse
+import ru.microsrv.teamretroservice.model.web.response.base.BaseResponse
+import ru.microsrv.teamretroservice.model.web.response.base.TotalResponse
 import ru.microsrv.teamretroservice.model.web.response.retro.GetRetroListResponse
 import ru.microsrv.teamretroservice.model.web.response.retro.GetRetroResponse
 import ru.microsrv.teamretroservice.service.RetroService
@@ -66,7 +68,7 @@ class RetroController(
      * Удаление ретро.
      */
     @DeleteMapping("{retroId}")
-    fun selectRetro(@PathVariable retroId: UUID): BaseResponse {
+    fun deleteRetro(@PathVariable retroId: UUID): TotalResponse {
         return retroService.deleteRetro(retroId)
     }
 
@@ -84,6 +86,14 @@ class RetroController(
     @PutMapping("note/update")
     fun updateNote(@Valid @RequestBody request: UpdateNoteRequest): BaseResponse {
         return retroService.updateNote(request)
+    }
+
+    /**
+     * Удаление списка заметок.
+     */
+    @DeleteMapping("note/delete")
+    fun deleteNotes(@Valid @RequestBody request: DeleteNoteRequest): TotalResponse {
+        return retroService.deleteNotes(request)
     }
 
 }

@@ -1,4 +1,4 @@
-package ru.microsrv.teamretroservice.model.web.response.retro
+package ru.microsrv.teamretroservice.model.web.response.base
 
 import java.util.*
 
@@ -10,5 +10,5 @@ import java.util.*
  * если объект не найден / не создан / не обновлён, то вернется id = null
  */
 data class BaseResponse(
-    val id: UUID?
+    val id: UUID? = null
 )

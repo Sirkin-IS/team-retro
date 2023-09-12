@@ -9,4 +9,7 @@ import ru.microsrv.teamretroservice.model.entity.RetroEntity
  * Репозиторий для работы с ретро.
  */
 @Repository
-interface RetroRepository : JpaRepository<RetroEntity, UUID>
+interface RetroRepository : JpaRepository<RetroEntity, UUID> {
+
+    fun deleteByRetroId(ids: UUID): Long
+}

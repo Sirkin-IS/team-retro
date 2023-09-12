@@ -60,3 +60,15 @@ Content-Type: application/json
   "caption": "caption11112",
   "text": "текст заметки2222234"
 }
+
+### Удаление списка заметок
+DELETE {{base_url}}/api/v1/retro/note/delete
+Authorization: {{auth_token}}
+Content-Type: application/json
+
+{
+  "ids": [
+    "7211f55c-5961-4939-b2d9-ea299673ec54",
+    "611fad6e-09a4-4be6-8941-946b7ad52cbb"
+  ]
+}
