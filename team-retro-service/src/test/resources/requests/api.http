@@ -36,6 +36,7 @@ Content-Type: application/json
 
 ### Удаление ретро
 DELETE {{base_url}}/api/v1/retro/bf661e0c-cba9-4a26-9cfc-a2874db0e402
+Authorization: {{auth_token}}
 
 ### Создание новой заметки
 POST {{base_url}}/api/v1/retro/03608c62-6831-4d71-8be3-ccff1e0cc34d/note/create
@@ -47,4 +48,15 @@ Content-Type: application/json
   "stageType": "WENT_WELL",
   "caption": "caption",
   "text": "текст заметки"
+}
+
+### Редактирование заметки
+PUT {{base_url}}/api/v1/retro/note/update
+Authorization: {{auth_token}}
+Content-Type: application/json
+
+{
+  "noteId": "f5f6882c-9532-43a6-8ef9-ac508597156e",
+  "caption": "caption11112",
+  "text": "текст заметки2222234"
 }

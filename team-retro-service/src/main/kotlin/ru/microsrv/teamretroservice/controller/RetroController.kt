@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import ru.microsrv.teamretroservice.model.web.request.note.CreateNoteRequest
+import ru.microsrv.teamretroservice.model.web.request.note.UpdateNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.CreateRetroRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.GetRetroListRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.UpdateRetroRequest
@@ -75,6 +76,14 @@ class RetroController(
     @PostMapping("{retroId}/note/create")
     fun createNote(@PathVariable retroId: UUID, @Valid @RequestBody request: CreateNoteRequest): BaseResponse {
         return retroService.createNote(retroId, request)
+    }
+
+    /**
+     * Обновление заметки.
+     */
+    @PutMapping("note/update")
+    fun updateNote(@Valid @RequestBody request: UpdateNoteRequest): BaseResponse {
+        return retroService.updateNote(request)
     }
 
 }

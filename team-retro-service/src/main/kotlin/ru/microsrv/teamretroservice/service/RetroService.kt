@@ -10,6 +10,7 @@ import ru.microsrv.teamretroservice.mapper.RetroMapper
 import ru.microsrv.teamretroservice.model.common.PageableResponse
 import ru.microsrv.teamretroservice.model.entity.RetroEntity
 import ru.microsrv.teamretroservice.model.web.request.note.CreateNoteRequest
+import ru.microsrv.teamretroservice.model.web.request.note.UpdateNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.CreateRetroRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.GetRetroListRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.UpdateRetroRequest
@@ -79,6 +80,22 @@ class RetroService(
         val note = noteMapper.toNoteEntity(retroId, request)
         val res = noteRepository.save(note)
         return BaseResponse(res.noteId)
+    }
+
+    fun updateNote(request: UpdateNoteRequest): BaseResponse {
+        val noteEntity = noteRepository.findById(request.noteId).orElse(null) ?: return BaseResponse(null)
+
+        if (noteEntity.caption != request.caption || (request.text != null && noteEntity.text != request.text)) {
+            noteEntity.caption = request.caption
+            if (request.text != null) {
+                noteEntity.text = request.text
+            }
+
+            val result = noteRepository.save(noteEntity)
+            return BaseResponse(result.noteId)
+        }
+
+        return BaseResponse(null)
     }
 
 }

@@ -6,13 +6,13 @@ import ru.microsrv.teamretroservice.model.enums.StageType
 
 data class CreateNoteRequest(
 
-    var userId: UUID,
+    val userId: UUID,
 
-    var stageType: StageType,
+    val stageType: StageType,
 
     @field:Size(max = 50)
-    var caption: String? = null,
+    val caption: String? = null,
 
     @field:Size(max = 4096)
-    var text: String
+    val text: String
 )
