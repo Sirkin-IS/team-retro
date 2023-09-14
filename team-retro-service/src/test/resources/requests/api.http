@@ -50,6 +50,15 @@ Content-Type: application/json
   "text": "текст заметки"
 }
 
+### Получение списка заметок ретро
+GET {{base_url}}/api/v1/retro/94d52e48-fe72-4bd8-86bd-83a71a9db96d/note/list?
+    stageType=WENT_WELL&
+    stageType=DIDNT_GO_WELL&
+    stageType=ACTION&
+    stageType=KUDOS
+Authorization: {{auth_token}}
+Content-Type: application/json
+
 ### Редактирование заметки
 PUT {{base_url}}/api/v1/retro/note/update
 Authorization: {{auth_token}}

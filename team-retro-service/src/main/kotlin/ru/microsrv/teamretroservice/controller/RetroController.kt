@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import ru.microsrv.teamretroservice.model.web.request.note.CreateNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.note.DeleteNoteRequest
+import ru.microsrv.teamretroservice.model.web.request.note.GetNoteListRequest
 import ru.microsrv.teamretroservice.model.web.request.note.MergeNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.note.UpdateNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.CreateRetroRequest
@@ -19,6 +20,7 @@ import ru.microsrv.teamretroservice.model.web.request.retro.GetRetroListRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.UpdateRetroRequest
 import ru.microsrv.teamretroservice.model.web.response.base.BaseResponse
 import ru.microsrv.teamretroservice.model.web.response.base.TotalResponse
+import ru.microsrv.teamretroservice.model.web.response.note.GetNoteListResponse
 import ru.microsrv.teamretroservice.model.web.response.retro.GetRetroListResponse
 import ru.microsrv.teamretroservice.model.web.response.retro.GetRetroResponse
 import ru.microsrv.teamretroservice.service.RetroService
@@ -79,6 +81,14 @@ class RetroController(
     @PostMapping("{retroId}/note/create")
     fun createNote(@PathVariable retroId: UUID, @Valid @RequestBody request: CreateNoteRequest): BaseResponse {
         return retroService.createNote(retroId, request)
+    }
+
+    /**
+     * Получение списка заметок ретро.
+     */
+    @GetMapping("{retroId}/note/list")
+    fun getNoteList(@PathVariable retroId: UUID, @Valid request: GetNoteListRequest): GetNoteListResponse {
+        return retroService.getNoteList(retroId, request)
     }
 
     /**

@@ -1,19 +1,18 @@
 package ru.microsrv.teamretroservice.model.dto
 
 import com.fasterxml.jackson.annotation.JsonInclude
-import java.time.ZonedDateTime
 import java.util.*
-
+import ru.microsrv.teamretroservice.model.enums.StageType
 
 /**
- * DTO ретро.
+ * DTO заметки.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class RetroDto(
+data class NoteDto(
 
+    val noteId: UUID,
     val retroId: UUID,
+    val stageType: StageType,
     val caption: String? = null,
-    val description: String? = null,
-    val createDttm: ZonedDateTime? = null,
-    val updateDttm: ZonedDateTime? = null
+    val text: String
 )

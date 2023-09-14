@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+#    org.hibernate: INFO
+    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#    org.hibernate.resource.jdbc.internal.ResourceRegistryStandardImpl: TRACE
+    org.springframework.orm.jpa: DEBUG
+    org.springframework.orm.jpa.SharedEntityManagerCreator: DEBUG
+    org.springframework.transaction: INFO
+    org.springframework.data.transaction: DEBUG

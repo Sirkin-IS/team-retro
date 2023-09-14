@@ -15,6 +15,7 @@ import ru.microsrv.teamretroservice.model.entity.NoteEntity
 import ru.microsrv.teamretroservice.model.entity.RetroEntity
 import ru.microsrv.teamretroservice.model.web.request.note.CreateNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.note.DeleteNoteRequest
+import ru.microsrv.teamretroservice.model.web.request.note.GetNoteListRequest
 import ru.microsrv.teamretroservice.model.web.request.note.MergeNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.note.UpdateNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.CreateRetroRequest
@@ -22,6 +23,7 @@ import ru.microsrv.teamretroservice.model.web.request.retro.GetRetroListRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.UpdateRetroRequest
 import ru.microsrv.teamretroservice.model.web.response.base.BaseResponse
 import ru.microsrv.teamretroservice.model.web.response.base.TotalResponse
+import ru.microsrv.teamretroservice.model.web.response.note.GetNoteListResponse
 import ru.microsrv.teamretroservice.model.web.response.retro.GetRetroListResponse
 import ru.microsrv.teamretroservice.model.web.response.retro.GetRetroResponse
 import ru.microsrv.teamretroservice.repository.NoteRepository
@@ -88,6 +90,17 @@ class RetroService(
         val note = noteMapper.toNoteEntity(retroId, request)
         val res = noteRepository.save(note)
         return BaseResponse(res.noteId)
+    }
+
+    fun getNoteList(retroId: UUID, request: GetNoteListRequest): GetNoteListResponse {
+        val result = if (request.stageType?.isEmpty() != false) {
+            noteRepository.findByRetroId(retroId)
+        } else {
+            noteRepository.findByRetroIdAndStageTypeIn(retroId, request.stageType)
+        }
+
+        val noteDtoList = noteMapper.toNoteDto(result)
+        return GetNoteListResponse(noteDtoList)
     }
 
     fun updateNote(request: UpdateNoteRequest): BaseResponse {
