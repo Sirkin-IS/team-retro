@@ -72,3 +72,15 @@ Content-Type: application/json
     "611fad6e-09a4-4be6-8941-946b7ad52cbb"
   ]
 }
+
+### Слияние списка заметок в одну
+PUT {{base_url}}/api/v1/retro/note/merge
+Authorization: {{auth_token}}
+Content-Type: application/json
+
+{
+  "ids": [
+    "6bde68f0-63fb-46e2-8742-173a637d1f17",
+    "f4969958-55fd-4795-9d58-e7d4a2ed604f"
+  ]
+}

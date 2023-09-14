@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import ru.microsrv.teamretroservice.model.web.request.note.CreateNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.note.DeleteNoteRequest
+import ru.microsrv.teamretroservice.model.web.request.note.MergeNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.note.UpdateNoteRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.CreateRetroRequest
 import ru.microsrv.teamretroservice.model.web.request.retro.GetRetroListRequest
@@ -96,4 +97,11 @@ class RetroController(
         return retroService.deleteNotes(request)
     }
 
+    /**
+     * Слияние списка заметок в одну.
+     */
+    @PutMapping("note/merge")
+    fun mergeNote(@Valid @RequestBody request: MergeNoteRequest): BaseResponse {
+        return retroService.mergeNote(request)
+    }
 }

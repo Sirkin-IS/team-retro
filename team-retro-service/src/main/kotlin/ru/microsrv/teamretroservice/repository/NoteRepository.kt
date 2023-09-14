@@ -14,4 +14,6 @@ interface NoteRepository : JpaRepository<NoteEntity, UUID> {
     fun deleteByRetroId(id: UUID): Long
 
     fun deleteByNoteIdIn(noteId: Collection<UUID>): Long
+
+    fun findByNoteIdIn(noteId: Collection<UUID>): List<NoteEntity>
 }
