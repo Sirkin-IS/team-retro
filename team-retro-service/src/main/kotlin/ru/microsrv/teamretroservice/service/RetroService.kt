@@ -106,6 +106,10 @@ class RetroService(
     fun updateNote(request: UpdateNoteRequest): BaseResponse {
         val noteEntity = noteRepository.findById(request.noteId).orElse(null) ?: return BaseResponse(null)
 
+//        if (noteEntity.userId != currentUser.userId) {// todo: редактировать заметку может только хозяин заметки
+//            return BaseResponse(null)
+//        }
+
         if (noteEntity.caption != request.caption || (request.text != null && noteEntity.text != request.text)) {
             noteEntity.caption = request.caption
             noteEntity.text = request.text ?: noteEntity.text

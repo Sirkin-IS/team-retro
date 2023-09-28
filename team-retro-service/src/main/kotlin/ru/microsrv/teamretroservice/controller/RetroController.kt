@@ -2,6 +2,7 @@ package ru.microsrv.teamretroservice.controller
 
 import jakarta.validation.Valid
 import java.util.UUID
+//import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -38,6 +39,7 @@ class RetroController(
     /**
      * Создание нового ретро.
      */
+//    @PreAuthorize("hasRole('SCRUM_MASTER')")
     @PostMapping
     fun createRetro(@RequestBody @Valid request: CreateRetroRequest): BaseResponse {
         return retroService.createRetro(request)
@@ -46,6 +48,7 @@ class RetroController(
     /**
      * Получение списка ретро.
      */
+//    @PreAuthorize("hasRole('SCRUM_MASTER')")
     @GetMapping("list")
     fun getRetroList(@Valid request: GetRetroListRequest): GetRetroListResponse {
         return retroService.getRetroList(request)
@@ -54,6 +57,7 @@ class RetroController(
     /**
      * Получение параметров ретро.
      */
+//    @PreAuthorize("hasRole('SCRUM_MASTER')")
     @GetMapping("{retroId}")
     fun getRetro(@PathVariable retroId: UUID): GetRetroResponse {
         return retroService.getRetro(retroId)
@@ -62,6 +66,7 @@ class RetroController(
     /**
      * Обновление параметров ретро.
      */
+//    @PreAuthorize("hasRole('SCRUM_MASTER')")
     @PutMapping("{retroId}")
     fun updateRetro(@PathVariable retroId: UUID, @Valid @RequestBody request: UpdateRetroRequest): BaseResponse {
         return retroService.updateRetro(retroId, request)
@@ -70,6 +75,7 @@ class RetroController(
     /**
      * Удаление ретро.
      */
+//    @PreAuthorize("hasRole('SCRUM_MASTER')")
     @DeleteMapping("{retroId}")
     fun deleteRetro(@PathVariable retroId: UUID): TotalResponse {
         return retroService.deleteRetro(retroId)
@@ -78,6 +84,7 @@ class RetroController(
     /**
      * Создание новой заметки.
      */
+//    @PreAuthorize("hasRole('SCRUM_MASTER') or hasRole('PARTICIPANT')")
     @PostMapping("{retroId}/note/create")
     fun createNote(@PathVariable retroId: UUID, @Valid @RequestBody request: CreateNoteRequest): BaseResponse {
         return retroService.createNote(retroId, request)
@@ -86,6 +93,7 @@ class RetroController(
     /**
      * Получение списка заметок ретро.
      */
+//    @PreAuthorize("hasRole('SCRUM_MASTER') or hasRole('PARTICIPANT')")
     @GetMapping("{retroId}/note/list")
     fun getNoteList(@PathVariable retroId: UUID, @Valid request: GetNoteListRequest): GetNoteListResponse {
         return retroService.getNoteList(retroId, request)
@@ -94,6 +102,7 @@ class RetroController(
     /**
      * Обновление заметки.
      */
+//    @PreAuthorize("hasRole('SCRUM_MASTER') or hasRole('PARTICIPANT')")
     @PutMapping("note/update")
     fun updateNote(@Valid @RequestBody request: UpdateNoteRequest): BaseResponse {
         return retroService.updateNote(request)
@@ -102,6 +111,7 @@ class RetroController(
     /**
      * Удаление списка заметок.
      */
+//    @PreAuthorize("hasRole('SCRUM_MASTER')")
     @DeleteMapping("note/delete")
     fun deleteNotes(@Valid @RequestBody request: DeleteNoteRequest): TotalResponse {
         return retroService.deleteNotes(request)
@@ -110,6 +120,7 @@ class RetroController(
     /**
      * Слияние списка заметок в одну.
      */
+//    @PreAuthorize("hasRole('SCRUM_MASTER')")
     @PutMapping("note/merge")
     fun mergeNote(@Valid @RequestBody request: MergeNoteRequest): BaseResponse {
         return retroService.mergeNote(request)

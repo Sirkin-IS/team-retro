@@ -115,6 +115,10 @@ databaseChangeLog:
                   name: name
                   type: varchar(100)
                   remarks: ФИО
+              - column:
+                  name: role
+                  type: varchar(20)
+                  remarks: Роль пользователя
       rollback:
           - dropTable:
               tableName: retro_user

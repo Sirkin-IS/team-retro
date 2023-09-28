@@ -1,0 +1,11 @@
+### test nginx redirection to https (404)
+GET http://localhost:80
+
+### test nginx https (404)
+GET https://localhost:443
+
+### Получение списка ретро (запрос к сервису через nginx)
+GET https://localhost/api/v1/retro/list?
+    pageNumber=0&
+    pageSize=2
+Content-Type: application/json

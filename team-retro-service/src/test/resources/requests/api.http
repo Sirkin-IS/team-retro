@@ -18,12 +18,12 @@ Authorization: {{auth_token}}
 Content-Type: application/json
 
 ### Получение параметров ретро
-GET {{base_url}}/api/v1/retro/94d52e48-fe72-4bd8-86bd-83a71a9db96d
+GET {{base_url}}/api/v1/retro/00000000-0000-0000-0000-000000000001
 Authorization: {{auth_token}}
 Content-Type: application/json
 
 ### Обновление параметров ретро
-PUT {{base_url}}/api/v1/retro/bf661e0c-cba9-4a26-9cfc-a2874db0e402
+PUT {{base_url}}/api/v1/retro/00000000-0000-0000-0000-000000000001
 Authorization: {{auth_token}}
 Content-Type: application/json
 
@@ -35,23 +35,23 @@ Content-Type: application/json
 <> end-request-body
 
 ### Удаление ретро
-DELETE {{base_url}}/api/v1/retro/bf661e0c-cba9-4a26-9cfc-a2874db0e402
+DELETE {{base_url}}/api/v1/retro/00000000-0000-0000-0000-000000000001
 Authorization: {{auth_token}}
 
 ### Создание новой заметки
-POST {{base_url}}/api/v1/retro/03608c62-6831-4d71-8be3-ccff1e0cc34d/note/create
+POST {{base_url}}/api/v1/retro/00000000-0000-0000-0000-000000000001/note/create
 Authorization: {{auth_token}}
 Content-Type: application/json
 
 {
-  "userId": "00000000-0000-0000-0000-000000000001",
+  "userId": "782f2c44-1a7c-15dc-dc2d-ffe2a636a3a8",
   "stageType": "WENT_WELL",
   "caption": "caption",
   "text": "текст заметки"
 }
 
 ### Получение списка заметок ретро
-GET {{base_url}}/api/v1/retro/94d52e48-fe72-4bd8-86bd-83a71a9db96d/note/list?
+GET {{base_url}}/api/v1/retro/00000000-0000-0000-0000-000000000001/note/list?
     stageType=WENT_WELL&
     stageType=DIDNT_GO_WELL&
     stageType=ACTION&
@@ -65,9 +65,9 @@ Authorization: {{auth_token}}
 Content-Type: application/json
 
 {
-  "noteId": "f5f6882c-9532-43a6-8ef9-ac508597156e",
-  "caption": "caption11112",
-  "text": "текст заметки2222234"
+  "noteId": "00000000-0000-0000-0000-000000000001",
+  "caption": "Отредактированный заголовок",
+  "text": "Новый текст заметки"
 }
 
 ### Удаление списка заметок
@@ -77,8 +77,8 @@ Content-Type: application/json
 
 {
   "ids": [
-    "7211f55c-5961-4939-b2d9-ea299673ec54",
-    "611fad6e-09a4-4be6-8941-946b7ad52cbb"
+    "00000000-0000-0000-0000-000000000001",
+    "00000000-0000-0000-0000-000000000002"
   ]
 }
 
@@ -89,7 +89,7 @@ Content-Type: application/json
 
 {
   "ids": [
-    "6bde68f0-63fb-46e2-8742-173a637d1f17",
-    "f4969958-55fd-4795-9d58-e7d4a2ed604f"
+    "00000000-0000-0000-0000-000000000003",
+    "00000000-0000-0000-0000-000000000004"
   ]
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository
 import ru.microsrv.teamretroservice.model.entity.NoteEntity
 import ru.microsrv.teamretroservice.model.enums.StageType
 
+
 /**
  * Репозиторий для работы с заметками.
  */

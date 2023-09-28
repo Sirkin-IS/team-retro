@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import java.util.*
 import ru.microsrv.teamretroservice.model.enums.StageType
 
+
 /**
  * DTO заметки.
  */

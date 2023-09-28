@@ -2,12 +2,15 @@ package ru.microsrv.teamretroservice.model.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
 import jakarta.validation.constraints.Size
 import java.util.*
+import ru.microsrv.teamretroservice.model.enums.UserRole
 
 
 /**
@@ -23,28 +26,28 @@ class RetroUserEntity {
     @Id
     @Column(name = "user_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var userId: UUID? = null
+    lateinit var userId: UUID
 
     /**
      * Логин.
      */
     @Column(name = "login", nullable = false)
     @Size(max = 100)
-    var login: String? = null
+    lateinit var login: String
 
     /**
      * Хэш пароля.
      */
     @Column(name = "password_hash", nullable = false)
     @Size(max = 100)
-    var passwordHash: String? = null
+    lateinit var passwordHash: String
 
     /**
      * Перец.
      */
     @Column(name = "pepper")
     @Size(max = 100)
-    var pepper: String? = null
+    lateinit var pepper: String
 
     /**
      * ФИО.
@@ -52,4 +55,12 @@ class RetroUserEntity {
     @Column(name = "name")
     @Size(max = 100)
     var name: String? = null
+
+    /**
+     * Роль пользователя.
+     */
+    @Size(max = 20)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    lateinit var role: UserRole
 }
