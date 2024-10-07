@@ -3,12 +3,16 @@ spring:
     properties:
       hibernate:
         format_sql: true
+#        jdbc.batch_size: 5
+        # Отображение статистики запросов
+#        generate_statistics: true
 
 logging:
   level:
+    # Отображение статистики запросов
 #    org.hibernate: INFO
     org.hibernate.SQL: DEBUG
-#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.orm.jdbc.bind: TRACE
 #    org.hibernate.resource.jdbc.internal.ResourceRegistryStandardImpl: TRACE
     org.springframework.orm.jpa: DEBUG
     org.springframework.orm.jpa.SharedEntityManagerCreator: DEBUG
