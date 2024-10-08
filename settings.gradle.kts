@@ -1,3 +1,16 @@
 rootProject.name = "team-retro"
 include("team-retro-service")
-include("team-retro-service-liquibase-job")
+include("migration")
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+}
+
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}

@@ -1,0 +1,48 @@
+[versions]
+# spring
+spring-boot = "3.3.4"
+# db
+postgresql = "42.7.4"
+liquibase = "4.29.2"
+# mapstruct
+mapstruct = "1.6.2"
+# jackson
+jackson = "2.18.0"
+# plugins
+kotlin = "1.9.24"
+spring-boot-plugin = "3.3.4"
+spring-dependency-management-plugin = "1.1.6"
+liquibase-gradle-plugin = "2.2.0" # todo: up to "3.0.1"
+
+[libraries]
+# spring
+springboot-starter-logging = { group = "org.springframework.boot", name = "spring-boot-starter-logging", version.ref = "spring-boot" }
+springboot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "spring-boot" }
+springboot-starter-jdbc = { group = "org.springframework.boot", name = "spring-boot-starter-jdbc", version.ref = "spring-boot" }
+springboot-starter-data-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa", version.ref = "spring-boot" }
+springboot-starter-undertow = { group = "org.springframework.boot", name = "spring-boot-starter-undertow", version.ref = "spring-boot" }
+springboot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "spring-boot" }
+springboot-starter-validation = { group = "org.springframework.boot", name = "spring-boot-starter-validation", version.ref = "spring-boot" }
+# spring security
+springboot-starter-security = { group = "org.springframework.boot", name = "spring-boot-starter-security", version.ref = "spring-boot" }
+# mapstruct
+mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
+# db
+postgresql = { group = "org.postgresql", name = "postgresql", version.ref = "postgresql" }
+liquibase-core = { group = "org.liquibase", name = "liquibase-core", version.ref = "liquibase" }
+# jackson
+jackson-module-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin", version.ref = "jackson" }
+# kotlin
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot-plugin" }
+spring-dependency-management = {id = "io.spring.dependency-management", version.ref = "spring-dependency-management-plugin" }
+liquibase-gradle = {id = "org.liquibase.gradle", version.ref = "liquibase-gradle-plugin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
+kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
