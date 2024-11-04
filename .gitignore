@@ -34,3 +34,6 @@ replay_pid*
 
 ### Artifacts of build ###
 build/
+
+# Certificate and private key of server
+/docker/nginx/conf/ssl/

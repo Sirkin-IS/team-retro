@@ -37,6 +37,14 @@ class RetroController(
 ) {
 
     /**
+     * Welcome page.
+     */
+    @GetMapping("welcome")
+    fun welcomePage(): String {
+        return "Welcome to retro service v 1.0.0"
+    }
+
+    /**
      * Создание нового ретро.
      */
 //    @PreAuthorize("hasRole('SCRUM_MASTER')")

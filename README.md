@@ -37,9 +37,12 @@
    - certificate.crt — сам сертификат;
    - privateKey.key — файл ключа.
 
+   закинуть сгенерённое в \docker\nginx\conf\ssl
+
 3. Указать в настройках `ssl.conf` путь к сертификату параметр `ssl_certificate`, по умолчанию: `/etc/nginx/ssl/certificate.crt`
    и путь к приватному ключу `ssl_certificate_key`, по умолчанию: `/etc/nginx/ssl/privateKey.key`
 4. Настройка Security/Server Side TLS (для протоколов ниже TLS 1.3)
    команда для генерации файла dhparam: `openssl dhparam -out /etc/nginx/ssl/dhparam.pem 4096`
+   пример: `openssl dhparam -out dhparam.pem 4096` - сгенерит dhparam.pem в текущей директории
    указать в настройках `ssl.conf` параметр `ssl_dhparam` путь к dhparam.pem, по умолчанию: `/etc/nginx/ssl/dhparam.pem`
 5. Запустить контейнер nginx-srv

@@ -1,3 +1,7 @@
+### Приветственная страница
+GET {{base_url}}/api/v1/retro/welcome
+Content-Type: application/json
+
 ### Создание нового ретро
 POST {{base_url}}/api/v1/retro
 Authorization: {{auth_token}}
