@@ -5,7 +5,7 @@ GET http://localhost:80
 GET https://localhost:443
 
 ### Получение списка ретро (запрос к сервису через nginx)
-GET https://localhost/api/v1/retro/list?
+GET https://localhost:444/api/v1/retro/list?
     pageNumber=0&
     pageSize=2
 Content-Type: application/json

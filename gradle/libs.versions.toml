@@ -1,6 +1,6 @@
 [versions]
 # spring
-spring-boot = "3.3.4"
+spring-boot = "3.3.5"
 # db
 postgresql = "42.7.4"
 liquibase = "4.29.2"
@@ -10,7 +10,7 @@ mapstruct = "1.6.2"
 jackson = "2.18.0"
 # plugins
 kotlin = "1.9.24"
-spring-boot-plugin = "3.3.4"
+spring-boot-plugin = "3.3.5"
 spring-dependency-management-plugin = "1.1.6"
 liquibase-gradle-plugin = "2.2.0" # todo: up to "3.0.1"
 
